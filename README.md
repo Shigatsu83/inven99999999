@@ -19,7 +19,7 @@
 ## Getting started
 ### Clone the repo:
 ```bash
-git clone --depth 1 https://github.com/denikn/lksdiycc2024
+git clone --depth 1 https://github.com/upilkecebong/sinvent-ukk.git
 cd lksdiycc2024
 rm -rf .git
 ```
