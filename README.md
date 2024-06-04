@@ -20,7 +20,7 @@
 ### Clone the repo:
 ```bash
 git clone --depth 1 https://github.com/upilkecebong/sinvent-ukk.git
-cd lksdiycc2024
+cd sinvent-ukk
 rm -rf .git
 ```
 
