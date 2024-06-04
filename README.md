@@ -7,6 +7,118 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Requirements
+ - [Debian 12](https://www.debian.org/download)
+ - [Apache](https://httpd.apache.org/docs/current/install.html)
+ - [MariaDB](https://mariadb.com/kb/en/installing-mariadb-deb-files/)
+ - [PHP v8.2+](https://www.php.net/)
+ - [Composer v2](https://yarnpkg.com/en/docs/install)
+ - [Nodejs v20+](https://downloads.nodesource.com/)
+
+
+## Getting started
+### Clone the repo:
+```bash
+git clone --depth 1 https://github.com/denikn/lksdiycc2024
+cd lksdiycc2024
+rm -rf .git
+```
+
+### Set environment variables:
+```bash
+cp .env.example .env
+```
+
+### Set key:
+```bash
+php artisan key:generate
+```
+### Install dependencies:
+```bash
+composer install
+```
+
+### Database migration and seed:
+```bash
+php artisan migrate
+```
+## MySQL Stored Procedure & Triggers
+### Store Procedure KetKategori()
+```bash
+DELIMITER $$
+CREATE FUNCTION ketKategorik(kat VARCHAR(4))
+RETURNS varchar(30)
+BEGIN
+IF kat = 'M' THEN
+return "Modal Barang";
+ELSEIF kat="A" THEN
+RETURN "Alat";
+ELSEIF kat="BHP" THEN
+RETURN "Bahan Habis Pakai";
+ELSEIF kat="BTHP" THEN
+RETURN "Bahan Tidak Habis Pakai";
+END IF;
+END$$
+DELIMITER ;
+```
+
+### Trigger Tambah Stok
+```bash
+DELIMITER //
+
+CREATE TRIGGER tambah_stok AFTER INSERT ON barangmasuk
+FOR EACH ROW
+BEGIN
+    UPDATE barang SET barang.stok = barang.stok + NEW.qty_masuk WHERE barang.id = NEW.barang_id; 
+END;
+//
+
+DELIMITER ;
+```
+
+### Trigger Kurangi Stok
+```bash
+DELIMITER //
+
+CREATE TRIGGER kurangi_stok AFTER INSERT ON barangkeluar
+FOR EACH ROW
+BEGIN
+    UPDATE barang SET barang.stok = barang.stok - NEW.qty_keluar WHERE barang.id = NEW.barang_id; 
+END;
+//
+
+DELIMITER ;
+```
+
+### Trigger Update Barang Masuk
+```bash
+DELIMITER //
+
+CREATE TRIGGER edit_tambah_stok AFTER UPDATE ON barangmasuk
+FOR EACH ROW
+BEGIN
+    UPDATE barang SET barang.stok = barang.stok + (NEW.qty_masuk - OLD.qty_masuk) WHERE barang.id = NEW.barang_id; 
+END;
+//
+
+DELIMITER ;
+```
+
+### Trigger Update Barang Keluar
+```bash
+DELIMITER //
+
+CREATE TRIGGER edit_kurangi_stok AFTER UPDATE ON barangkeluar
+FOR EACH ROW
+BEGIN
+    UPDATE barang SET barang.stok = barang.stok - (NEW.qty_keluar - OLD.qty_keluar) WHERE barang.id = NEW.barang_id; 
+END;
+//
+
+DELIMITER ;
+```
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
