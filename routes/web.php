@@ -21,4 +21,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('products', ProductController::class);
     Route::resource('category', CategoryController::class);
-    });
+});

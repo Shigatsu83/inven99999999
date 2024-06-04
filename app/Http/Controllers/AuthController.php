@@ -26,7 +26,7 @@ class AuthController extends Controller
 
         $user->save();
 
-        return redirect('/login')->with('success', 'Register successfully');
+        return redirect()->route('dashboard')->with('success', 'Register successfully');
     }
 
     public function loginPost(Request $request){
@@ -36,12 +36,12 @@ class AuthController extends Controller
         ];
 
         if(Auth::attempt($credential)){
-            return redirect()->route('dashboard')->with('success','Login Mewing!');
+            return redirect()->route('dashboard')->with('success','Welcome and Happy Mewing!');
         }
         return back()->with('error', 'Email or password invalid');
     }
     public function logout(){
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Logout Mewing!');
     }
 }
