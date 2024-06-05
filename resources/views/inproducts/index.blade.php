@@ -6,30 +6,28 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <a href="{{ route('products.create') }}" class="btn btn-md btn-success mb-3">ADD PRODUCT</a>
+                        <a href="{{ route('inproducts.create') }}" class="btn btn-md btn-success mb-3">ADD PRODUCT</a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col">IMAGE</th>
-                                    <th scope="col">TITLE</th>
-                                    <th scope="col">PRICE</th>
-                                    <th scope="col">STOCK</th>
+                                    <th scope="col">QUANTITY</th>
+                                    <th scope="col">DATE</th>
+                                    <th scope="col">PRODUCT</th>
+                                    <th scope="col">DESCRIPTION</th>
                                     <th scope="col" style="width: 20%">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($products as $product)
+                                @forelse ($barangMasuks as $product)
                                     <tr>
+                                        <td>{{ $product->qty }}</td>
+                                        <td>{{ $product->tgl_masuk }}</td>
+                                        <td>{{ $product->product->title }}</td>
+                                        <td>{{ $product->product->description }}</td>
                                         <td class="text-center">
-                                            <img src="{{ asset('/storage/products/'.$product->image) }}" class="rounded" style="width: 150px">
-                                        </td>
-                                        <td>{{ $product->title }}</td>
-                                        <td>{{ "Rp " . number_format($product->price,2,',','.') }}</td>
-                                        <td>{{ $product->stock }}</td>
-                                        <td class="text-center">
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-dark"><i class="fa fa-eye"></i></a>
-                                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a>
+                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('inproducts.destroy', $product->id) }}" method="POST">
+                                                <a href="{{ route('inproducts.show', $product->id) }}" class="btn btn-sm btn-dark"><i class="fa fa-eye"></i></a>
+                                                <a href="{{ route('inproducts.edit', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a>
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
@@ -43,7 +41,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $products->links() }}
+                        {{ $barangMasuks->links() }}
                     </div>
                 </div>
             </div>

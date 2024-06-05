@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 //import model product
-use App\Models\Product; 
+use App\Models\Category;
 
 //import return type View
-use Illuminate\View\View;
+use App\Models\Product; 
 
 //import return type redirectResponse
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 //import Http Request
+use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
@@ -39,7 +40,8 @@ class ProductController extends Controller
      */
     public function create(): View
     {
-        return view('products.create');
+        $categoryId= Category::all();
+        return view('products.create', compact('categoryId'));
     }
 
     /**
@@ -54,22 +56,22 @@ class ProductController extends Controller
         $request->validate([
             'image'         => 'required|image|mimes:jpeg,jpg,png|max:2048',
             'title'         => 'required|min:5',
-            'description'   => 'required|min:10',
+            'category_id'   => 'required',
+            'description'   => 'required|min:1',
             'price'         => 'required|numeric',
             'stock'         => 'required|numeric'
         ]);
-
         //upload image
         $image = $request->file('image');
-        $image->storeAs('public/products', $image->hashName());
-
+        $image->storeAs('public/products/', $image->hashName());
         //create product
-        $file = Product::create([
+        Product::create([
             'image'         => $image->hashName(),
             'title'         => $request->title,
             'description'   => $request->description,
             'price'         => $request->price,
-            'stock'         => $request->stock
+            'stock'         => $request->stock,
+            'category_id'   => $request->category_id, //change to 'category_id
         ]);
 
         //redirect to index
@@ -82,9 +84,10 @@ class ProductController extends Controller
 
     public function edit(string $id){
         $product = Product::findOrFail($id);
+        $categoryId = Category::all();
 
         //render view with product
-        return view('products.edit', compact('product'));
+        return view('products.edit', compact('product', 'categoryId'));
     }
 
     public function update(Request $request, $id){
@@ -102,7 +105,7 @@ class ProductController extends Controller
 
             //upload new image
             $image = $request->file('image');
-            $image->storeAs('public/products', $image->hashName());
+            $image->storeAs('public/products/', $image->hashName());
 
             //delete old image
             Storage::delete('public/products/'.$product->image);

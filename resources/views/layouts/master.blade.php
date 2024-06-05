@@ -67,6 +67,16 @@
                     <span>Barang</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('inproducts.index')}}">
+                    <span>Barang Masuk</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('products.index')}}">
+                    <span>Barang Keluar</span>
+                </a>
+            </li>
             
        
 

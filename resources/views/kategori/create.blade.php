@@ -4,8 +4,8 @@
 <form action="{{ route('category.store') }}" method="POST">
     @csrf
     <div class="form-group">
-        <label for="kategori">Kategori</label>
-        <select name="category" id="kategori" class="form-control">
+        <label for="category">Kategori</label>
+        <select name="category" id="category" class="form-control">
             <option value="">-- Select Category --</option>
             <option value="A">Alat</option>
             <option value="M">Modal</option>

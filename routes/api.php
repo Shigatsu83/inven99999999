@@ -8,5 +8,4 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/category', [CategoryController::class, 'show']);
-Route::post('/category', [CategoryController::class, 'insertNew']);
+Route::apiResource('/category', CategoryController::class);

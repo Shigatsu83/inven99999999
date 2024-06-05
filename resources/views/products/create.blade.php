@@ -1,5 +1,8 @@
 @extends('layouts.master')
 @section('content')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<body style="background: lightgray">
+
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-md-12">
@@ -26,6 +29,21 @@
                                 <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="Masukkan Judul Product">
                             
                                 <!-- error message untuk title -->
+                                @error('title')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="font-weight-bold">KATEGORI</label>
+                                <select class="form-control" name="category_id" aria-label="Default select example">
+                                    <option value="">--Pilih--</option>
+                                    @foreach ($categoryId as $v)
+                                        <option value="{{$v->id}}">{{$v->category}}</option>
+                                    @endforeach
+                                </select>
                                 @error('title')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -89,4 +107,5 @@
     <script>
         CKEDITOR.replace( 'description' );
     </script>
+</body>
 @endsection

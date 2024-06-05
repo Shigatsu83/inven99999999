@@ -21,6 +21,21 @@
                                     </div>
                                 @enderror
                             </div>
+                            <div class="form-group mb-3">
+                                <label class="font-weight-bold">TYPE</label>
+                                <select class="form-control @error('type') is-invalid @enderror" name="category_id">
+                                    @foreach($categoryId as $category)
+                                        <option value="{{ $category->id }}" {{ old('type') == $category->id ? 'selected' : '' }}>{{ $category->category }}</option>
+                                    @endforeach
+                                </select>
+
+                                <!-- error message untuk type -->
+                                @error('type')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
 
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">TITLE</label>
