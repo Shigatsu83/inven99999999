@@ -12,7 +12,10 @@ class ApiKategoriController extends Controller
      */
     public function index()
     {
-        //
+        $kategori = Kategori::all();
+        $data = array("data"=>$kategori);
+
+        return response()->json($data);
     }
 
     /**
