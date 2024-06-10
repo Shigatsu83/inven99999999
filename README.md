@@ -10,11 +10,56 @@
 ## Requirements
  - [Debian 12](https://www.debian.org/download)
  - [Apache](https://httpd.apache.org/docs/current/install.html)
- - [MariaDB](https://mariadb.com/kb/en/installing-mariadb-deb-files/)
- - [PHP v8.2+](https://www.php.net/)
- - [Composer v2](https://yarnpkg.com/en/docs/install)
- - [Nodejs v20+](https://downloads.nodesource.com/)
+```bash
+apt-get install apache2 -y
+```
 
+ - [MariaDB](https://mariadb.com/kb/en/installing-mariadb-deb-files/)
+```bash
+apt install mariadb-server -y
+```
+
+ - [PHP v8.2+](https://www.php.net/)
+```bash
+apt install -y apt-transport-https lsb-release ca-certificates wget 
+```
+```bash
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+```
+```bash
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list 
+```
+```bash
+apt-get install php8.3 php8.3-common php8.3-curl libapache2-mod-php php8.3-imap php8.3-redis php8.3-cli php8.3-snmp php8.3-xml php8.3-zip php8.3-mbstring php8.3-gd php8.3-xml php8.3-mysql php-mbstring -y
+```
+
+ - [Composer v2](https://yarnpkg.com/en/docs/install)
+```bash
+apt install curl php-cli php-mbstring git unzip
+```
+```bash
+curl -sS https://getcomposer.org/installer -o composer-setup.php
+```
+```bash
+HASH=`curl -sS https://composer.github.io/installer.sig`
+```
+```bash
+echo $HASH
+```
+```bash
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+```
+```bash
+php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+```
+```bash
+composer
+```
+
+ - [Nodejs v20+](https://downloads.nodesource.com/)
+```bash
+curl -sL https://deb.nodesource.com/setup_20.x | bash -
+```
 
 ## Getting started
 ### Clone the repo:
@@ -29,19 +74,21 @@ rm -rf .git
 cp .env.example .env
 ```
 
-### Set key:
-```bash
-php artisan key:generate
-```
 ### Install dependencies:
 ```bash
 composer install
+```
+
+### Set key:
+```bash
+php artisan key:generate
 ```
 
 ### Database migration and seed:
 ```bash
 php artisan migrate
 ```
+
 ## MySQL Stored Procedure & Triggers
 ### Store Procedure KetKategori()
 ```bash
