@@ -27,6 +27,9 @@ apt install -y apt-transport-https lsb-release ca-certificates wget
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 ```
 ```bash
+apt update
+```
+```bash
 echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list 
 ```
 ```bash
@@ -64,12 +67,24 @@ curl -sL https://deb.nodesource.com/setup_20.x | bash -
 ## Getting started
 ### Clone the repo:
 ```bash
-git clone --depth 1 https://github.com/upilkecebong/sinvent-ukk.git
-cd sinvent-ukk
-rm -rf .git
+git clone https://github.com/upilkecebong/sinvent-ukk.git
+```
+
+### Change Owner
+```bash
+chown www-data:www-data -R sinvent-ukk/
+```
+
+### Change storage sermission 
+```bash
+cd sinvent-ukk/
+```
+```bash
+chmod 775 -R storage/
 ```
 
 ### Set environment variables:
+<p>Make sure that you already have database, database user, and its privileges</p>
 ```bash
 cp .env.example .env
 ```
