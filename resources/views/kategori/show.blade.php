@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('h1-title', 'Kategori')
 @section('content')
     <h1>{{ $category->category }}</h1>
     <p>{{ $category->description }}</p>

@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('h1-title', 'Product')
 @section('content')
 <table class="table table-bordered">
     <thead>

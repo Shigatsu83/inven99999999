@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('h1-title', 'Product')
 @section('content')
     <div class="container mt-5 mb-5">
         <div class="row">
@@ -78,7 +79,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="font-weight-bold">STOCK</label>
-                                        <input type="number" class="form-control @error('stock') is-invalid @enderror" name="stock" value="{{ old('stock', $product->stock) }}" placeholder="Masukkan Stock Product">
+                                        <input disabled type="number" class="form-control @error('stock') is-invalid @enderror" name="stock" value="{{ old('stock', $product->stock) }}" placeholder="Masukkan Stock Product">
                                     
                                         <!-- error message untuk stock -->
                                         @error('stock')

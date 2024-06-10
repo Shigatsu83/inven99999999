@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('h1-title', 'Kategori')
 @section('content')
 
 <form action="{{ route('category.update', $category->id) }}" method="POST">

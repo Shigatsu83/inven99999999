@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('h1-title', 'Product Masuk')
+@section('h1-title', 'Product Keluar')
 @section('content')
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <body style="background: lightgray">
@@ -9,8 +9,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <form action="{{ route('inproducts.store') }}" method="POST" enctype="multipart/form-data">
-                        
+                        <form action="{{ route('outproducts.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">Quantity</label>
@@ -25,10 +24,10 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">Tanggal Masuk</label>
-                                <input type="date" class="form-control @error('tgl_masuk') is-invalid @enderror" name="tgl_masuk">
+                                <input type="date" class="form-control @error('tgl_keluar') is-invalid @enderror" name="tgl_keluar">
                                 
-                                <!-- error message for tgl_masuk -->
-                                @error('tgl_masuk')
+                                <!-- error message for tgl_keluar -->
+                                @error('tgl_keluar')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>

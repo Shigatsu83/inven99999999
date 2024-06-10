@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('h1-title', 'Product')
 @section('content')
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <body style="background: lightgray">
@@ -44,7 +45,7 @@
                                         <option value="{{$v->id}}">{{$v->category}}</option>
                                     @endforeach
                                 </select>
-                                @error('title')
+                                @error('category_id')  
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>
@@ -80,14 +81,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="font-weight-bold">STOCK</label>
-                                        <input type="number" class="form-control @error('stock') is-invalid @enderror" name="stock" value="{{ old('stock') }}" placeholder="Masukkan Stock Product">
+                                        <input type="number" class="form-control" name="stock" value="0">
                                     
                                         <!-- error message untuk stock -->
-                                        @error('stock')
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
                                     </div>
                                 </div>
                             </div>

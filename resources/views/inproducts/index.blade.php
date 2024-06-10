@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('h1-title', 'Product Masuk')
 @section('content')
 <body style="background: lightgray">
     <div class="container mt-5">
@@ -13,7 +14,6 @@
                                     <th scope="col">QUANTITY</th>
                                     <th scope="col">DATE</th>
                                     <th scope="col">PRODUCT</th>
-                                    <th scope="col">DESCRIPTION</th>
                                     <th scope="col" style="width: 20%">ACTIONS</th>
                                 </tr>
                             </thead>
@@ -23,7 +23,6 @@
                                         <td>{{ $product->qty }}</td>
                                         <td>{{ $product->tgl_masuk }}</td>
                                         <td>{{ $product->product->title }}</td>
-                                        <td>{{ $product->product->description }}</td>
                                         <td class="text-center">
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('inproducts.destroy', $product->id) }}" method="POST">
                                                 <a href="{{ route('inproducts.show', $product->id) }}" class="btn btn-sm btn-dark"><i class="fa fa-eye"></i></a>
@@ -36,7 +35,7 @@
                                     </tr>
                                 @empty
                                     <div class="alert alert-danger">
-                                        Data Products belum Tersedia.
+                                        Data Produk Masuk belum Tersedia.
                                     </div>
                                 @endforelse
                             </tbody>

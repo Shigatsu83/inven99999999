@@ -45,33 +45,46 @@ class BarangMasukController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(BarangMasuk $barangMasuk)
+    public function show(BarangMasuk $barangMasuk, string $id)
     {
-        $barangMasuk = BarangMasuk::find($barangMasuk->id);
-        return view('inproducts.show', compact('barangMasuk'));
+        $item = BarangMasuk::find($id);
+        return view('inproducts.show', compact('item'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BarangMasuk $barangMasuk)
+    public function edit(string $id)
     {
-        //
+        $productOption = Product::all();
+        $barangMasuk = BarangMasuk::find($id);
+        return view('inproducts.edit', compact('barangMasuk', 'productOption'));           //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BarangMasuk $barangMasuk)
+    public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'tgl_masuk' => 'required',
+            'qty' => 'required',
+        ]);
+
+        $barangMasuk = BarangMasuk::find($id);
+        $barangMasuk->update($request->all());
+        return redirect()->route('inproducts.index')
+            ->with('success', 'Barang Masuk updated successfully'); 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BarangMasuk $barangMasuk)
+    public function destroy(string $id)
     {
-        //
+        $barangMasuk = BarangMasuk::find($id);
+        $barangMasuk->delete();
+        return redirect()->route('inproducts.index')
+            ->with('success', 'Barang Masuk deleted mewingly.');
     }
 }

@@ -37,6 +37,9 @@
                             <div class="d-grid">
                                 <button class="btn btn-primary">Login</button>
                             </div>
+                            <div class="mb-3">
+                                <p class="text-center">Not a member? <a href="{{ route('register') }}">Register here</a></p>
+                            </div>
                         </div>
                     </form>
                 </div>

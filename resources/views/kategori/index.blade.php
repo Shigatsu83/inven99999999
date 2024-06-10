@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('h1-title', 'Kategori')
 @section('title', 'Admin Inventory - Kategori')
 
 @section('content')

@@ -73,7 +73,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('products.index')}}">
+                <a class="nav-link" href="{{route('outproducts.index')}}">
                     <span>Barang Keluar</span>
                 </a>
             </li>
@@ -308,7 +308,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">@yield('h1-title')</h1>
                         <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
                             @csrf
                             @method('DELETE')
