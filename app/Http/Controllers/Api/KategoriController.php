@@ -34,8 +34,8 @@ class KategoriController extends Controller
             'kategori'   => $request->kategori,
         ]);
 
-        $data = array("data"=>$kategoribaru);
-        return response()->json($data);
+        $databaru = array("data"=>$kategoribaru);
+        return response()->json($databaru);
 
     }
 
