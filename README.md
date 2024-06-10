@@ -13,10 +13,12 @@
 ```bash
 apt-get install apache2 -y
 ```
+
  - [MariaDB](https://mariadb.com/kb/en/installing-mariadb-deb-files/)
 ```bash
 apt install mariadb-server -y
 ```
+
  - [PHP v8.2+](https://www.php.net/)
 ```bash
 apt install -y apt-transport-https lsb-release ca-certificates wget 
@@ -30,6 +32,7 @@ echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt
 ```bash
 apt-get install php8.3 php8.3-common php8.3-curl libapache2-mod-php php8.3-imap php8.3-redis php8.3-cli php8.3-snmp php8.3-xml php8.3-zip php8.3-mbstring php8.3-gd php8.3-xml php8.3-mysql php-mbstring -y
 ```
+
  - [Composer v2](https://yarnpkg.com/en/docs/install)
 ```bash
 apt install curl php-cli php-mbstring git unzip
@@ -52,6 +55,7 @@ php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 ```bash
 composer
 ```
+
  - [Nodejs v20+](https://downloads.nodesource.com/)
 ```bash
 curl -sL https://deb.nodesource.com/setup_20.x | bash -
@@ -70,19 +74,21 @@ rm -rf .git
 cp .env.example .env
 ```
 
-### Set key:
-```bash
-php artisan key:generate
-```
 ### Install dependencies:
 ```bash
 composer install
+```
+
+### Set key:
+```bash
+php artisan key:generate
 ```
 
 ### Database migration and seed:
 ```bash
 php artisan migrate
 ```
+
 ## MySQL Stored Procedure & Triggers
 ### Store Procedure KetKategori()
 ```bash
