@@ -4,12 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    public function index(){
-        $categories = Category::all();
-        return view('kategori.index', compact('categories'));
+    public function index(Request $request){
+        if($request->search){
+            $data = DB::table('categories')->select('id', 'category', 'description')
+            ->where('category', 'like', '%'.$request->search.'%')
+            ->orWhere('description', 'like', '%'.$request->search.'%')
+            ->orWhere('id', 'like', '%'.$request->search.'%')->paginate(10);
+        }else{
+            $data = Category::latest()->paginate(10);
+            return view('kategori.index', compact('data'));
+        }
+        return view('kategori.index', compact('data'));
     }
 
     public function show($id){

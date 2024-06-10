@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories')->cascadeOnUpdate()->restrictOnDelete();
             //$table->unsignedSmallInteger('category_id');
             //$table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('restrict');
-            $table->integer('stock')->default('1');
+            $table->integer('stock')->default('0');
             $table->timestamps();
         });
     }

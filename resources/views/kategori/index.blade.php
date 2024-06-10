@@ -2,6 +2,21 @@
 @section('h1-title', 'Kategori')
 @section('title', 'Admin Inventory - Kategori')
 
+@section('search')
+    <form action="/category" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    @csrf
+    <div class="input-group">
+        <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for..."
+            aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+    </form>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -26,8 +41,6 @@
                     @endif
                 </div>
             @endif
-
-            @if(count($categories) > 0)
                 <div class="col-md-12">
                     <table class="table table-bordered">
                         <thead>
@@ -39,7 +52,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($categories as $kategori)
+                            @forelse ($data as $kategori)
                                 <tr>
                                     <td>{{ $kategori->id }}</td>
                                     <td>{{ $kategori->description }}</td>
@@ -68,13 +81,6 @@
                         </tbody>
                     </table>
                 </div>
-            @else
-                <div class="col-md-12">
-                    <div class="alert alert-danger text-center">
-                        Record <strong>Kategori</strong> kosong.
-                    </div>
-                </div>
-            @endif
         </div>
     </div>
 @endsection

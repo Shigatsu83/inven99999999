@@ -12,4 +12,8 @@ class Category extends Model
         'category',
         'description',
     ];
+
+    public function getCategoryAttribute($value){
+        return ucfirst($value);
+    }
 }
