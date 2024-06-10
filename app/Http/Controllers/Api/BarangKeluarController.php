@@ -13,7 +13,10 @@ class BarangKeluarController extends Controller
      */
     public function index()
     {
-        //
+        $barangKeluar = BarangKeluar::all();
+        $data = array("data"=>$barangKeluar);
+
+        return response()->json($data);
     }
 
     /**
@@ -27,9 +30,16 @@ class BarangKeluarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(BarangKeluar $barangKeluar)
+    public function show(string $id)
     {
-        //
+        $barangKeluar = BarangKeluar::find($id);
+
+        if(!$barangKeluar){
+            return response()->json(['message' => 'barangKeluar tidak ditemukan'], 404);
+        }else{
+            $data=array("data"=>$barangKeluar);
+            return response()->json($data);
+        }
     }
 
     /**
