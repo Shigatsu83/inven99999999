@@ -19,6 +19,9 @@ apt install mariadb-server -y
 ```
  - [PHP v8.2+](https://www.php.net/)
 ```bash
+add-apt-repository ppa:ondrej/php 
+```
+```bash
 apt-get install php8.3 php8.3-common php8.3-curl libapache2-mod-php php8.3-imap php8.3-redis php8.3-cli php8.3-snmp php8.3-xml php8.3-zip php8.3-mbstring php8.3-gd php8.3-xml php8.3-mysql php-mbstring -y
 ```
  - [Composer v2](https://yarnpkg.com/en/docs/install)
