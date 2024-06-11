@@ -26,9 +26,13 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
+                    <div class="col-lg-6 d-none d-lg-block">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <img src="{{ asset('theme/img/login.jpg') }}" alt="" style="width: 120%; height: 100%;">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 d-flex align-items-center">
+                        <div class="p-5 w-100">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
@@ -36,46 +40,35 @@
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-sm-12 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-usern @error('name') is-invalid @enderror" name="name"
-                                            placeholder="Name">
+                                        <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" name="name" placeholder="Name">
                                     </div>
                                     @error('name')
-                                        <div class="invalid-feedback">
-                                            Salah
-                                        </div>
+                                    <div class="invalid-feedback">
+                                        Salah
+                                    </div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" name="email"
-                                        placeholder="Email Address">
+                                    <input type="email" class="form-control form-control-user" name="email" placeholder="Email Address">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            name="password" placeholder="Password">
+                                        <input type="password" class="form-control form-control-user" name="password" placeholder="Password">
                                     </div>
                                 </div>
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn btn-primary">Register Account</button>
                                 </div>
-                                <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
                             </form>
                             <hr>
-                            <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div>
                             <div class="text-center">
                                 <a class="small" href="login">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
 
