@@ -61,12 +61,19 @@ class BarangMasukController extends Controller
 
     public function destroy($id)
     {
-        $barangMasuk = BarangMasuk::findOrFail($id);
-        $barangMasuk->delete();
+        $datamasuk = BarangMasuk::findOrFail($id);  
+        
+        $referencedInBarangKeluar = BarangKeluar::where('barang_id', $datamasuk->barang_id)->exists();
+
+        if ($referencedInBarangKeluar) {
+        return redirect()->route('barangmasuk.index')->with(['error' => 'Data Tidak Bisa Dihapus Karena Masih Digunakan di Tabel Barang dan Barang Keluar!']);
+        }
+
+        $datamasuk->delete();
 
         return redirect()->route('barangmasuk.index')->with(['success' => 'Data Berhasil Dihapus!']);
-    }
 
+    }
 
     public function edit($id)
     {
