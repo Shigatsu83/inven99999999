@@ -11,10 +11,22 @@ class BarangController extends Controller
 {
     public function index(Request $request)
     {
-        $rsetBarang = Barang::with('kategori')->latest()->paginate(10);
+        // $rsetBarang = Barang::with('kategori')->latest()->paginate(10);
 
-        return view('barang.index', compact('rsetBarang'))
-            ->with('i', (request()->input('page', 1) - 1) * 10);
+        // return view('barang.index', compact('rsetBarang'))
+        $keyword = $request->input('keyword');
+
+        // Query untuk mencari barang berdasarkan keyword
+        $rsetBarang = Barang::where('merk', 'LIKE', "%$keyword%")
+        ->orWhere('seri', 'LIKE', "%$keyword%")
+        ->orWhere('spesifikasi', 'LIKE', "%$keyword%")
+        ->orWhere('stok', 'LIKE', "%$keyword%")
+        ->orWhereHas('kategori', function ($query) use ($keyword) {
+            $query->where('deskripsi', 'LIKE', "%$keyword%");
+            })
+            ->paginate(10);
+            
+        return view('barang.index', compact('rsetBarang'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     public function create()
