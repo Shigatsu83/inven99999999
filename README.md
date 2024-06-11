@@ -180,6 +180,34 @@ END;
 DELIMITER ;
 ```
 
+### Triger Undo Delete Barang Masuk
+```bash
+DELIMITER $$
+CREATE TRIGGER barang_undo_stokdelete
+BEFORE DELETE ON barangmasuk
+FOR EACH ROW
+BEGIN
+UPDATE barang
+SET barang.stok = barang.stok - OLD.qty_masuk
+WHERE barang.id = OLD.barang_id;
+END$$
+DELIMITER ;
+```
+
+### Triger Undo Delete Barang Keluar
+```bash
+DELIMITER $$
+CREATE TRIGGER barang_undo_stokdel
+BEFORE DELETE ON barangkeluar
+FOR EACH ROW
+BEGIN
+UPDATE barang
+SET barang.stok = barang.stok + OLD.qty_keluar
+WHERE barang.id = OLD.barang_id;
+END$$
+DELIMITER ;
+```
+
 
 ## About Laravel
 
