@@ -85,6 +85,7 @@ chmod 775 -R storage/
 
 ### Set environment variables:
 <p>Make sure that you already have database, database user, and its privileges</p>
+
 ```bash
 cp .env.example .env
 ```
