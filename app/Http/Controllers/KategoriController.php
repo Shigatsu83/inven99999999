@@ -13,14 +13,7 @@ class KategoriController extends Controller
     public function index(Request $request)
     {
         {
-            // $rsetKategori = DB::table('kategori')
-            // ->select('id', 'deskripsi', DB::raw('ketKategorik(kategori) as ketkategorik'))
-            // ->orderBy('kategori', 'asc') // Menambahkan orderBy untuk mengurutkan berdasarkan deskripsi (kategori) secara ascending
-            // ->paginate(10);
-    
-            // return view('kategori.index', compact('rsetKategori'))
-            // ->with('i', ($request->input('page', 1) - 1) * 10);
-    
+
             $keyword = $request->input('keyword');
     
             // Query untuk mencari kategori berdasarkan keyword
