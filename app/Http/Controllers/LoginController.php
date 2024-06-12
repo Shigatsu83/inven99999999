@@ -33,6 +33,18 @@ class LoginController extends Controller
 
     }
 
+    // public function logout(Request $request): RedirectResponse
+    //     {
+
+    //     Auth::logout();
+
+    //     $request->session()->invalidate();
+
+    //     $request->session()->regenerateToken();
+
+    //     return redirect('/login');
+    // }
+
     public function logout(Request $request): RedirectResponse
         {
 
@@ -44,4 +56,5 @@ class LoginController extends Controller
 
         return redirect('/login');
     }
+
 }
